@@ -12,6 +12,7 @@ function buildMap() {
 	var iconname = [];
 //create array of values
 	var iconvalue = [];
+	var o;
 if (t != undefined) {
 //for each point, push if it is the right type and if that has been clicked
 	for (var i = 0; i < geoJson[0].features.length; i++) {
@@ -19,31 +20,38 @@ if (t != undefined) {
 			raw.push(geoJson[0].features[i])
 			iconname.push(geoJson[0].features[i].properties.sales_rank);
 			iconvalue.push(geoJson[0].features[i].properties.sales);
+			o = " MWh/year"
 		} 
 		else if (t.id === "b2" && geoJson[0].features[i].properties.cust_rank != null) {
 			raw.push(geoJson[0].features[i])
 			iconname.push(geoJson[0].features[i].properties.cust_rank);
 			iconvalue.push(geoJson[0].features[i].properties.customers);
+			o = " Customers"
 		}
 		else if (t.id === "b3" && geoJson[0].features[i].properties.part_rate_ != null) {
 			raw.push(geoJson[0].features[i])
 			iconname.push(geoJson[0].features[i].properties.part_rate_);
 			iconvalue.push(geoJson[0].features[i].properties.part_rate);
+			o = "% of Customers Participating"
 		}
 		else if (t.id === "b4" && geoJson[0].features[i].properties.perc_load_ != null) {
 			raw.push(geoJson[0].features[i])
 			iconname.push(geoJson[0].features[i].properties.perc_load_);
 			iconvalue.push(geoJson[0].features[i].properties.perc_load);
+			o = "% of Sales"
 		}
 		else if (t.id === "b5" && geoJson[0].features[i].properties.net_prem_1 != null) {
 			raw.push(geoJson[0].features[i])
 			iconname.push(geoJson[0].features[i].properties.net_prem_1);
 			iconvalue.push(geoJson[0].features[i].properties.net_premiu);
+			o = " cents/kWh"
 		}
 		else if (t.id === "b6" && geoJson[0].features[i].properties.perc_sol_1 != null) {
 			raw.push(geoJson[0].features[i])
 			iconname.push(geoJson[0].features[i].properties.perc_sol_1);
 			iconvalue.push(geoJson[0].features[i].properties.perc_solar);
+			o = "% Solar"
+
 		};
 	};
 } else {
@@ -53,10 +61,14 @@ if (t != undefined) {
 			raw.push(geoJson[0].features[i])
 			iconname.push(geoJson[0].features[i].properties.sales_rank);
 			iconvalue.push(geoJson[0].features[i].properties.sales);
+						o = " MWh/year"
+
 		};
 	};
 };
-      var oms = new OverlappingMarkerSpiderfier(map);
+     
+
+    var oms = new OverlappingMarkerSpiderfier(map);
 
 	for (var i = 0; i < raw.length; i++) {
 	 //create a the "iconic" url for the icon, from the mapbox api.
@@ -65,11 +77,12 @@ if (t != undefined) {
 	  if (iconname[i] != 10) {iconic="http://api.tiles.mapbox.com/v3/marker/pin-m-"+ iconname[i] +"+71bc4e.png"} else{
 	  	iconic = 'icons/ten.png'	
 	  };
-	  
+
+console.log(o);
 	  // Create custom popup content
         var popupContent =  '<div class=\'popHeader\'><h2>' + raw[i].properties.utility + '</h2></div>' +
         '<p>' + raw[i].properties.location + '</p>' +
-        '<p>' + iconvalue[i] + '</p></div>'; 
+        '<p>' + iconvalue[i] + o +'</p></div>'; 
 
 	  /*pushing items into array each by each and then add markers*/
 	  var LamMarker = new L.marker([raw[i].geometry.coordinates[1],raw[i].geometry.coordinates[0]], {
@@ -84,11 +97,7 @@ if (t != undefined) {
 		  map.addLayer(marker[i]);
 		          oms.addMarker(marker[i]);
 
-console.log('hh')
 	};
-
-	console.log('hello')
-
 };
 
 function removal() {
@@ -111,12 +120,11 @@ function removal() {
 			t = this;
 			buildMap();
 		});
-	});
 
 	//turn on off pull tab
-$('a.pull-tab').click(function (e) {
+$('a#tably').click(function (e) {
        e.preventDefault();
-       $('a.pull-tab').removeClass('active');
+       $('a#tably').removeClass('active');
        $('.about-data').addClass('active');
        $('a.closed').addClass('active');
    });
@@ -125,6 +133,8 @@ $('a.closed').click(function (e) {
        e.preventDefault();
        $('.about-data').removeClass('active');
        $('a.closed').removeClass('active');
-       $('a.pull-tab').addClass('active');
+       $('a#tably').addClass('active');
    });       
+	});
+
 }(jQuery));
