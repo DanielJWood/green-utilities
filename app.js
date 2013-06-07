@@ -78,7 +78,6 @@ if (t != undefined) {
 	  	iconic = '/sites/prod/files/ten.png'	
 	  };
 
-console.log(o);
 	  // Create custom popup content
         var popupContent =  '<div class=\'popHeader\'><h2>' + raw[i].properties.utility + '</h2></div>' +
         '<p>' + raw[i].properties.location + '</p>' +
