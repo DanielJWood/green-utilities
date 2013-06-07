@@ -75,7 +75,7 @@ if (t != undefined) {
 	  var iconic;
 
 	  if (iconname[i] != 10) {iconic="http://api.tiles.mapbox.com/v3/marker/pin-m-"+ iconname[i] +"+71bc4e.png"} else{
-	  	iconic = 'icons/ten.png'	
+	  	iconic = '/sites/prod/files/ten.png'	
 	  };
 
 console.log(o);
