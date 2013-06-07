@@ -8,8 +8,10 @@
   <![endif]-->
 <style>
     body { margin:0; padding:0; font-family: arial;} 
-    #map { position:absolute; top:0; width:745px; height: 550px; z-index: -24}
-
+#map {
+ width:1000px;
+height:600px;
+} 
 .popup {
     position: absolute;
     margin-left: -25px;
@@ -50,8 +52,10 @@ text-decoration: none;
 }
 
 .leaflet-popup-content p {
-  margin: 0px;
-  color: #000;
+  margin: 0px !important;
+  padding-bottom: 0px !important;
+  border-bottom: 0px !important;
+  color: #000 !important;
 }
 
 .leaflet-popup-content h2 {
@@ -86,7 +90,7 @@ text-decoration: none;
     text-decoration: none;
     color: #fff;
     top: 38px;
-    width: 255px
+    width: 336px;
   }
 
   a.pull-tab:hover {
@@ -101,7 +105,7 @@ text-decoration: none;
     z-index: 5;
     left: -1400px;
     top:78px;
-    width: 130px;
+    width: 150px;
     height: 22px;
     box-shadow: 1px 1px 2px #111;
     border-radius: 0px 3px 3px 0px;
@@ -185,8 +189,8 @@ text-decoration: none;
 
 <div class="twitter-widget">
         
-        <a class="pull-tab" id="pull-title" href="#">2012 Utility Green Power Leaders</a>
-        <a class="pull-tab" id="tably" href="#">See All Lists</a>
+        <h2><a class="pull-tab" id="pull-title" href="#">2012 Utility Green Power Leaders</a></h2>
+        <h2><a class="pull-tab" id="tably" href="#">See All Leaders</a></h2>
         <a class="closed active" href="#">x</a>
         <div class='about-data active'>
           <div id='data-text-container'>
